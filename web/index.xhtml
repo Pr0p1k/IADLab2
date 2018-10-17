@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 <head>
     <title>Time</title>
     <script src="start_page_scripts.js"/>
@@ -12,8 +13,9 @@
     <br/>
     <div id="txt"/>
     <h:form> 
-   <h:commandButton action = "#{navigationController.processLabPage}" 
-   value = "Page1"/>
+   <h:commandButton action = "#{navigationController.processLabPage}" value = "Lab page">
+   <f:param name = "pageId" value = "labPage" />
+   </h:commandButton>
 </h:form> 
 </h:body>
 </html>
