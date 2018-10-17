@@ -1,11 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+    <title>Time</title>
+    <script src="start_page_scripts.js"/>
+    <link rel="stylesheet" href="start_page_styles.css"/>
+</head>
+<h:body onload="startTime()">
+    <div class="header">
+        Вязников И.Д., Прокопьев А.В., группа Р3212. Вариант 21212
+    </div>
+    <br/>
+    <div id="txt"/>
+    <h:commandButton action="#{navigationController.processLabPage}" value="Lab page"/>
+</h:body>
 </html>
