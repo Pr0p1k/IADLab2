@@ -8,8 +8,8 @@ import java.io.Serializable;
 
 public class NavigationController implements Serializable {
     //this managed property will read value from request parameter pageId
-    //@ManagedProperty(value = "#{param.pageId}")
-    //private String pageId;
+    @ManagedProperty(value = "#{param.pageId}")
+    private String pageId;
 
     //condional navigation based on pageId
     //if pageId is 1 show page1.xhtml,
