@@ -7,16 +7,22 @@ import java.io.Serializable;
 @RequestScoped
 
 public class NavigationController implements Serializable {
-    //this managed property will read value from request parameter pageId
+	private static final long serialVersionUID = 1L;
+
     @ManagedProperty(value = "#{param.pageId}")
     private String pageId;
 
-    //condional navigation based on pageId
-    //if pageId is 1 show page1.xhtml,
-    //if pageId is 2 show page2.xhtml
-    //else show home.xhtml
-
     public String processLabPage() {
-        return "lab";
+    	if (pageId.equals("labPage"))
+    		return "lab";
+    	else return null;
     }
+
+	public String getPageId() {
+		return pageId;
+	}
+
+	public void setPageId(String pageId) {
+		this.pageId = pageId;
+	}
 }
