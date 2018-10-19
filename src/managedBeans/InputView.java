@@ -1,3 +1,5 @@
+package managedBeans;
+
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 
