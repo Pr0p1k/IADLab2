@@ -8,9 +8,9 @@
         <class>oracledbconnection.Point</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:9999/orbis" />
-            <property name="javax.persistence.jdbc.user" value="s243874" />
-            <property name="javax.persistence.jdbc.password" value="rty031" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521" />
+            <property name="javax.persistence.jdbc.user" value="s243860" />
+            <property name="javax.persistence.jdbc.password" value="raa679" />
         </properties>
     </persistence-unit>
 </persistence>

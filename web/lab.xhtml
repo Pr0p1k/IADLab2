@@ -60,39 +60,28 @@ xmlns:f="http://java.sun.com/jsf/core">
                 </h:form>
             </div>
             <div id="script_output">
-                <table id="table_result">
-                    <caption>Результат работы скрипта</caption>
-                    <thead>
-                    <tr>
-                        <td>X</td>
-                        <td>Y</td>
-                        <td>R</td>
-                        <td>Попадание</td>
-                    </tr>
-                    </thead>
+                <h:dataTable value= "#{databaseBean.gPoints}" var="o">
+                    <h:column>
+                        <!-- column header -->
+                        <f:facet name="header">X</f:facet>
+                        <!-- row record -->
+                        #{o.getX}
+                    </h:column>
 
-                </table>
+                    <h:column>
+                        <f:facet name="header">Y</f:facet>
+                        #{o.getY}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">R</f:facet>
+                        #{o.getR}
+                    </h:column>
+
+                </h:dataTable>
             </div>
         </div>
-        <h:dataTable value= "#{databaseBean.gPoints}" var="o">
-            <h:column>
-                <!-- column header -->
-                <f:facet name="header">X</f:facet>
-                <!-- row record -->
-                #{o.getX}
-            </h:column>
 
-            <h:column>
-                <f:facet name="header">Y</f:facet>
-                #{o.getY}
-            </h:column>
-
-            <h:column>
-                <f:facet name="header">R</f:facet>
-                #{o.getR}
-            </h:column>
-
-        </h:dataTable>
         <div id="computed_result">
             <canvas id="result"/>
         </div>

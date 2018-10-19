@@ -1,10 +1,11 @@
 package managedBeans;
 
-import java.io.Serializable;	
+import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
+@ManagedBean(name = "databaseBean")
 public class DatabaseBean implements Serializable {
 
 	private static final long serialVersionUID = -3201463349097795831L;
