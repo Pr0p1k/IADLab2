@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('r').addEventListener('input', function () {
+    document.getElementById('slider').addEventListener('input', function () {
         if (checkR(false)) draw();
         isDrawn = true;
         hideWarning();
@@ -123,8 +123,6 @@ function showWarning() {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-async
 
 function hideWarning() {
     $("#warning").animate({
