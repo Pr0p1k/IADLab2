@@ -4,7 +4,7 @@ import java.io.Serializable;
 @ManagedBean(name = "inputView")
 public class InputView implements Serializable {
     private int x = 2;
-    private int y = 0;
+    private double y = 1;
 
     public int getX() {
         return x;
@@ -14,11 +14,11 @@ public class InputView implements Serializable {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 }

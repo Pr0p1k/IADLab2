@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('slider').addEventListener('input', function () {
+    document.getElementById('Rslider').addEventListener('input', function () {
         if (checkR(false)) draw();
         isDrawn = true;
         hideWarning();
