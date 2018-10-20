@@ -7,10 +7,11 @@ body {
 }
 
 .header {
-    position: relative;
+    position: fixed;
     float: top;
     height: 60px;
     width: 100%;
+    z-index: 100;
     background-color: #2286c3;
     padding-top: 10px;
     padding-left: 10px;
@@ -55,10 +56,11 @@ body {
 .main {
     height: fit-content;
     overflow: auto;
-    margin: 10px 10px 10px 10px;
+    margin: 0 10px 10px 10px;
     background-color: #9be7ff;
     border-radius: 10px;
     position: relative;
+    top: 80px;
     padding: 10px;
     box-shadow: 0 0 8px #2286c3;
 }
@@ -117,9 +119,9 @@ body {
     border: 1px gray solid;
 }
 
-.elements > div {
+.elements div {
     padding: 5px;
-    border: 2px black solid;
+    border: 2px black dotted;
     margin: 10px;
 }
 
@@ -230,4 +232,3 @@ input[type="text"] {
 .ok_comment {
     display: none;
 }
-

@@ -67,26 +67,26 @@
             </div>
             <div id="script_output">
                 <h:outputText id="tabli"/>
-                <!--&lt;!&ndash;value= "#{databaseBean.gPoints}"&ndash;&gt;-->
-                <!--<h:dataTable id="tabli" var="o">-->
-                    <!--<h:column>-->
-                        <!--&lt;!&ndash; column header &ndash;&gt;-->
-                        <!--<f:facet name="header">X</f:facet>-->
-                        <!--&lt;!&ndash; row record &ndash;&gt;-->
-                        <!--#{o.getX}-->
-                    <!--</h:column>-->
+                <h:dataTable value= "#{databaseBean.points}" var="o">
+                
+                    <h:column>
+                        <!--column header-->
+                        <f:facet name="header">X</f:facet>
+                        <!--row record-->
+                        #{o.x}
+                    </h:column>
 
-                    <!--<h:column>-->
-                        <!--<f:facet name="header">Y</f:facet>-->
-                        <!--#{o.getY}-->
-                    <!--</h:column>-->
+                    <h:column>
+                        <f:facet name="header">Y</f:facet>
+                        #{o.y}
+                    </h:column>
 
-                    <!--<h:column>-->
-                        <!--<f:facet name="header">R</f:facet>-->
-                        <!--#{o.getR}-->
-                    <!--</h:column>-->
+                    <h:column>
+                        <f:facet name="header">R</f:facet>
+                        #{o.r}
+                    </h:column>
 
-                <!--</h:dataTable>-->
+                </h:dataTable>
             </div>
         </div>
 

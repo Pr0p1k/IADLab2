@@ -5,12 +5,13 @@
     <persistence-unit name="provider" transaction-type="RESOURCE_LOCAL">
         
 <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>oracledbconnection.Point</class>
+
+        <class>managedBeans.Point</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521" />
-            <property name="javax.persistence.jdbc.user" value="s243860" />
-            <property name="javax.persistence.jdbc.password" value="raa679" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:9999/orbis" />
+            <property name="javax.persistence.jdbc.user" value="" />
+            <property name="javax.persistence.jdbc.password" value="" />
         </properties>
     </persistence-unit>
 </persistence>

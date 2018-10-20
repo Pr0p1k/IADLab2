@@ -16,6 +16,11 @@
 
     <dependencies>
     <dependency>
+    <groupId>org.eclipse.persistence</groupId>
+    <artifactId>eclipselink</artifactId>
+    <version>2.5.0</version>
+</dependency>
+    <dependency>
     <groupId>javax.persistence</groupId>
     <artifactId>javax.persistence-api</artifactId>
     <version>2.2</version>
@@ -33,17 +38,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.themes</groupId>
-            <artifactId>start</artifactId>
-            <version>1.0.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.5.0</version>
+            <version>6.0</version>
         </dependency>
         <dependency>
             <groupId>org.icefaces</groupId>
@@ -60,6 +55,12 @@
             <artifactId>ace-sunny</artifactId>
             <version>4.3.0</version>
         </dependency>
+       <!--<dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>1.0.10</version>
+        </dependency>-->
+
     </dependencies>
 
     <build>
@@ -77,5 +78,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
