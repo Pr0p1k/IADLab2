@@ -16,7 +16,17 @@
         <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <context-param>
-        <param-name>primefaces.THEME</param-name>
-        <param-value>start</param-value>
+        <param-name>icefaces.THEME</param-name>
+        <param-value>ace-sunny</param-value>
     </context-param>
+    <servlet>
+        <servlet-name>Resource Servlet</servlet-name>
+        <servlet-class>com.icesoft.faces.webapp.CompatResourceServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Resource Servlet</servlet-name>
+        <url-pattern>/xmlhttp/*</url-pattern>
+        <url-pattern>/resources/*</url-pattern>
+    </servlet-mapping>
 </web-app>

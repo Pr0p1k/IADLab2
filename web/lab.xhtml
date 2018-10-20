@@ -1,13 +1,15 @@
 <html lang="ru"
       xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ace="http://www.icefaces.org/icefaces/components"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
+      xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <title>ПИП</title>
     <link href="img/logo.png" rel="shortcut icon" type="image/x-icon"/>
     <link href="style.css" rel="stylesheet" type="text/css"/>
     <script src="jquery-3.3.1.min.js"/>
     <script src="script.js"/>
-    <meta name="description" content="Лабораторная работа по программированию интернет приложений"/>
+    <meta name="description"/>
     <meta charset="utf-8"/>
 
 </h:head>
@@ -36,20 +38,22 @@ xmlns:f="http://java.sun.com/jsf/core">
                     <div class="elements">
                         <div id="X_input">
                             <label><span>Величина X </span>
-                                <p:spinner min="-3" max="3" stepFactor="1" value="#{inputView.x}" name="X" id="X"/>
+                                <p:spinner minValue="#{inputView.xMin}"
+                                           maxValue="#{inputView.xMax}" stepFactor="#{inputView.xStep}" id="X"/>
                             </label><br/>
                             <p class="ok_comment" id="X_comment">Значение X не выбрано</p>
                         </div>
                         <div id="Y_input">
                             <label><span>Величина Y </span>
-                                <p:inputText name="Y" id="Y" value="#{inputView.y}"/>
+                                <ice:inputText id="Y" value="#{inputView.y}"/>
                             </label><br/>
                             <p class="ok_comment" id="Y_comment">Значение Y не корректно</p>
                         </div>
                         <div id="R_input">
                             <label><span>Величина R </span>
-                                <h:inputHidden id="R"/>
-                                <p:slider for="R" minValue="2" maxValue="5" step="1" id="Rslider"/>
+                                <h:outputText id="outputR"/>
+                                <ace:sliderEntry min="#{inputView.rMin}" max="#{inputView.rMax}"
+                                                 stepPercent="#{inputView.rStep}" value="#{inputView.r}"/>
                             </label>
                             <p class="ok_comment" id="R_comment">Значение R не выбрано</p>
                         </div>
@@ -60,25 +64,25 @@ xmlns:f="http://java.sun.com/jsf/core">
                 </h:form>
             </div>
             <div id="script_output">
-                <h:dataTable value= "#{databaseBean.gPoints}" var="o">
-                    <h:column>
-                        <!-- column header -->
-                        <f:facet name="header">X</f:facet>
-                        <!-- row record -->
-                        #{o.getX}
-                    </h:column>
+                <!--<h:dataTable value= "#{databaseBean.gPoints}" var="o">-->
+                <!--<h:column>-->
+                <!--&lt;!&ndash; column header &ndash;&gt;-->
+                <!--<f:facet name="header">X</f:facet>-->
+                <!--&lt;!&ndash; row record &ndash;&gt;-->
+                <!--#{o.getX}-->
+                <!--</h:column>-->
 
-                    <h:column>
-                        <f:facet name="header">Y</f:facet>
-                        #{o.getY}
-                    </h:column>
+                <!--<h:column>-->
+                <!--<f:facet name="header">Y</f:facet>-->
+                <!--#{o.getY}-->
+                <!--</h:column>-->
 
-                    <h:column>
-                        <f:facet name="header">R</f:facet>
-                        #{o.getR}
-                    </h:column>
+                <!--<h:column>-->
+                <!--<f:facet name="header">R</f:facet>-->
+                <!--#{o.getR}-->
+                <!--</h:column>-->
 
-                </h:dataTable>
+                <!--</h:dataTable>-->
             </div>
         </div>
 

@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('Rslider').addEventListener('input', function () {
-        if (checkR(false)) draw();
-        isDrawn = true;
-        hideWarning();
-    });
+    // document.getElementById('Rslider').addEventListener('input', function () {
+    //     if (checkR(false)) draw();
+    //     isDrawn = true;
+    //     hideWarning();
+    // });
     document.getElementById('computed_result').addEventListener('click', pickPoint);
-    document.getElementById('send').addEventListener('click', check);
+    //document.getElementById('send').addEventListener('click', check);
 
     let canvas = document.getElementById('result');
     canvas.width = 1000;

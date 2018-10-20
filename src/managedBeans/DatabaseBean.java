@@ -32,5 +32,7 @@ public class DatabaseBean implements Serializable {
             EM.persist(p);
             EM.getTransaction().commit();
     }
+
+
 	
 }
