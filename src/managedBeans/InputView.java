@@ -2,11 +2,14 @@ package managedBeans;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import java.io.Serializable;
 
-@ManagedBean(name = "inputView")
+@ManagedBean(name = "inputBean", eager = true)
+@SessionScoped
 public class InputView implements Serializable {
 	private static final long serialVersionUID = -4049920593055331825L;
 	private double x = 2;
@@ -109,12 +112,43 @@ public class InputView implements Serializable {
         this.y = y;
     }
 
-    public void buttonAction(ActionEvent actionEvent) {
-        addMessage("kekekekekekeke ldofldgjdg");
+    public void submitForm() {
+    	Point pnt = new Point();
+    	pnt.setR(r);
+    	pnt.setX(x);
+    	pnt.setY(y);
+    	pnt.setHit(checkHit(pnt));
+    	DatabaseBean dbb = new DatabaseBean();
+    	dbb.addPoint(pnt);
+    	//return "";
+        //addMessage("kekekekekekeke ldofldgjdg");
     }
 
     public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
+    
+    public boolean checkHit (Point pnt) {
+    	double x = pnt.getX();
+    	double y = pnt.getY();
+    	double r = pnt.getR();
+    	if (x > 0 && y > 0)
+    		return false;
+    	if (x <= 0 && y > 0) {
+    		if (y > (x + r/2))
+    			return false;
+    		else
+    			return true;
+    	}
+    	if (x > 0 && y <= 0) {
+    		if (x > r/2 || y < -r)
+    			return false;
+    		else return true;
+    	}
+    	if ((x*2 + y*y) > (r*r/4))
+    		return false;
+    	return true;
+    }
+    
 }
