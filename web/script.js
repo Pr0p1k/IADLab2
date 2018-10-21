@@ -27,8 +27,9 @@ function check(btn) {
     // btn.preventDefault();
 
     if (checkR() & checkX() & checkY()) {
+    	hideWarning();
         draw();
-        drawDot(x / r * 400 + 500, -y / r * 400 + 500);
+        drawDot(x / r * 400 + 500, -y / r * 400 + 500, belongs(x, y, r));
         //compute();
         $("#calculate\\:sender").click();
     }
@@ -105,9 +106,24 @@ function pickPoint(event) {
         x = (X - 500) / 400 * r;
         y = -(Y - 500) / 400 * r;
         console.log(" draw X = " + X + " draw Y = " + Y);
-        drawDot(X, Y);
-        compute();
+        drawDot(X, Y, belongs(x, y, r));
+        $("#calculate\\:X_input").val(x);
+        $("#calculate\\:Y").val(y);
+        $("#calculate\\:sender").click();
+
     } else showWarning();
+}
+
+function belongs(x, y, r) {
+    if (x <= 0 & y >= 0 & y <= x + r / 2) {
+        return true;
+    } else if (x <= 0 & y <= 0 & Math.hypot(x, y) <= r / 2) {
+        return true;
+    } else if (x >= 0 & y <= 0 & y >= -r & x <= r / 2) {
+        return true;
+    }
+
+    return false;
 }
 
 function showWarning() {
@@ -133,20 +149,25 @@ function hideWarning() {
 
 function drawAllDots() {
     let rows = document.getElementById("tabli").rows;
+    if (rows.length > 1 & rows[1].cells[1] != undefined) {
     for (let i = 1; i < rows.length; i++) {
-        drawDot(rows[i].cells[0].innerHTML, rows[i].cells[1].innerHTML,
-            rows[i].cells[3].innerHTML === 'true');
-    }
+        let R = Number(rows[i].cells[2].innerHTML);
+        let xB = Number(rows[i].cells[0].innerHTML);
+        let yB = Number(rows[i].cells[1].innerHTML);//question: if i recover all the dots,
+        let X = Number(rows[i].cells[0].innerHTML) / r * 400 + 500; //then should their x and y adapt?
+        let Y = -Number(rows[i].cells[1].innerHTML) / r * 400 + 500; // if not, then should i change their color?
+        drawDot(X, Y, belongs(xB, yB, r));
+    }}
 }
 
 function draw() {
-    drawAllDots();
     let canvas = document.getElementById("result");
     let context = canvas.getContext("2d");
     let width = canvas.width;
     let height = canvas.height;
     drawArea(canvas, context, width, height);
     drawLines(canvas, context, width, height);
+    drawAllDots();
 }
 
 function drawLines(canvas, context, width, height) {
@@ -208,11 +229,11 @@ function drawLines(canvas, context, width, height) {
 function drawArea(canvas, context, width, height) {
     context.clearRect(0, 0, width, height);
     context.fillStyle = "#3399ff";
-    context.fillRect(width * 0.3, height / 2, width * 0.2, height * 0.4);
+    context.fillRect(width / 2, height / 2, width * 0.2, height * 0.4);
     context.beginPath();
-    context.moveTo(width * 0.5, height * 0.1);
-    context.lineTo(width * 0.7, height * 0.5);
-    context.lineTo(width * 0.5, height * 0.5);
+    context.moveTo(width * 0.5, height * 0.5);
+    context.lineTo(width * 0.3, height * 0.5);
+    context.lineTo(width * 0.5, height * 0.3);
     context.fill();
     context.beginPath();
     context.arc(width / 2, height / 2, width * 0.2, Math.PI, 0, true);

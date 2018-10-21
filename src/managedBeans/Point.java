@@ -16,8 +16,6 @@ import javax.faces.bean.RequestScoped;
 @NamedQuery(
 name = "pointlist",
 query = "SELECT p FROM Point p WHERE p.sessionid = :session ORDER BY p.created DESC")
-@ManagedBean(name = "point", eager = false)
-@RequestScoped
 @Table(name = "Point")
     public class Point implements Serializable  {
 	

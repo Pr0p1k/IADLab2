@@ -34,7 +34,7 @@
     <div class="main">
         <div class="io">
             <div class="data_input">
-                <h:form id="calculate" method="GET">
+                <h:form id="calculate">
                     <div class="elements">
                         <div id="X_input">
                             <label><span>Величина X </span>
@@ -55,7 +55,9 @@
                                 <h:outputText id="valueR"/>
                                 <ace:sliderEntry min="#{inputBean.rMin}" max="#{inputBean.rMax}"
                                                  stepPercent="#{inputBean.rStep}"
-                                                 value="#{inputBean.r}" id="slideR" length="250px"/>
+                                                 value="#{inputBean.r}" id="slideR"
+                                                 length="250px" widgetVar="sliderjs"/>
+                                                 
                             </label>
                             <p class="ok_comment" id="R_comment">Значение R не выбрано</p>
                         </div>
@@ -67,6 +69,7 @@
                 </h:form>
             </div>
             <div id="script_output">
+                <h:outputText />
                 <h:dataTable id="tabli" value= "#{databaseBean.points}" var="o">
                 
                     <h:column>
@@ -85,12 +88,12 @@
                         <f:facet name="header">R</f:facet>
                         #{o.r}
                     </h:column>
-
+					
 					<h:column>
                         <f:facet name="header">Hit</f:facet>
                         #{o.hit}
                     </h:column>
-
+					
                 </h:dataTable>
             </div>
         </div>
@@ -98,6 +101,11 @@
         <div id="computed_result">
             <canvas id="result"/>
         </div>
+        <h:form>
+        <h:commandButton action = "#{navigationController.processStartPage}" value = "Start page">
+   <f:param name = "pageId" value = "start" />
+   </h:commandButton>
+   </h:form>
     </div>
     <div class="main" id="footer">
         <p id="educator">Письмак А.Е.</p>
