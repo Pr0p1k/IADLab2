@@ -24,13 +24,17 @@ query = "SELECT p FROM Point p")
         @Id
         private double x;
         
+		
+		@Id
         @Column (name="Y")
         private double y;
         
+		@Id
         @Column (name="R")
         private double r;
         public Point(){}
-
+        
+        @Id
         @Column (name = "Hit")
         private boolean hit;
         
