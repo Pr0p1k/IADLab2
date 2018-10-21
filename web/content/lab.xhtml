@@ -37,31 +37,32 @@
                 <h:form id="calculate" method="GET">
                     <div class="elements">
                         <div id="X_input">
-                            <!--<label><span>Величина X </span>-->
-                            <p:spinner minValue="#{inputView.xMin}"
-                                       maxValue="#{inputView.xMax}" stepFactor="#{inputView.xStep}" id="X"/>
-                            <!--</label>-->
+                            <label><span>Величина X </span>
+                            <p:spinner minValue="#{inputBean.xMin}"
+                                       maxValue="#{inputBean.xMax}" stepFactor="#{inputBean.xStep}" id="X"/>
+                            </label>
                             <br/>
                             <p class="ok_comment" id="X_comment">Значение X не выбрано</p>
                         </div>
                         <div id="Y_input">
                             <label><span>Величина Y </span>
-                                <ice:inputText id="Y" value="#{inputView.y}"/>
+                                <p:inputText id="Y" value="#{inputBean.y}"/>
                             </label><br/>
                             <p class="ok_comment" id="Y_comment">Значение Y не корректно</p>
                         </div>
                         <div id="R_input">
                             <label><span>Величина R </span>
-
-                                <ace:sliderEntry min="#{inputView.rMin}" max="#{inputView.rMax}"
-                                                 stepPercent="#{inputView.rStep}"
-                                                 value="#{inputView.r}" id="slideR"/>
+                                <h:outputText id="valueR"/>
+                                <ace:sliderEntry min="#{inputBean.rMin}" max="#{inputBean.rMax}"
+                                                 stepPercent="#{inputBean.rStep}"
+                                                 value="#{inputBean.r}" id="slideR" length="250px"/>
                             </label>
                             <p class="ok_comment" id="R_comment">Значение R не выбрано</p>
                         </div>
                     </div>
                     <div class="send">
-                        <h:commandButton id="send" onclick="check(this)" action="#{inputView.buttonAction}"/>
+                        <div id="hidden"><h:commandButton id="sender" action="#{inputBean.submitForm}"/></div>
+                        <h:commandButton id="send" onclick="check(this)" />
                     </div>
                 </h:form>
             </div>

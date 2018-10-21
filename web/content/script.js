@@ -1,18 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('calculate:slideR_hidden').type = 'text';
-    document.getElementById('calculate:slideR_hidden').readonly = 'true';
     document.getElementById('calculate:slideR_hidden').addEventListener('change', function () {
         if (checkR(false)) draw();
         isDrawn = true;
         hideWarning();
     });
-    // let slider = ice.ace.instance('frm:slideR');
-    // slider.addEventListener('mouseup', function () {
-    //     console.log('ekgekger');
-    //     if (checkR(false)) draw();
-    //     isDrawn = true;
-    //     hideWarning();
-    // });
+    document.querySelector('calculate:slideR').addEventListener('click', function () {
+        console.log('ekgekger');
+        if (checkR(false)) { draw();
+            isDrawn = true;
+            hideWarning();
+        }
+    });
     document.getElementById('computed_result').addEventListener('click', pickPoint);
     //document.getElementById('send').addEventListener('click', check);
 
@@ -30,8 +28,10 @@ function check(btn) {
     // btn.preventDefault();
 
     if (checkR() & checkX() & checkY()) {
+        draw();
         drawDot(x / r * 400 + 500, -y / r * 400 + 500);
         compute();
+        $("[id$='hidden']").click();
     }
 }
 
@@ -39,7 +39,7 @@ function checkY() {
     let passed = true;
     let min = -5;
     let max = 5;
-    y = document.getElementById("Y").value;
+    y = $("[id$='Y']").val();
     y = y.replace(",", ".");
     if (isNaN(y) || Number(y) <= min || Number(y) >= max || y === '') {
         document.getElementById("Y_input").classList.add("error");
@@ -128,7 +128,6 @@ function hideWarning() {
     $("#warning").animate({
         left: "100%"
     }, 1000);
-    await
     sleep(1000);
     document.getElementById("warning").style.display = "none";
 }

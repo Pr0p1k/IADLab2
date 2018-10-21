@@ -152,6 +152,10 @@ body {
     height: 100%;
 }
 
+#hidden {
+    display: none;
+}
+
 #warning {
     position: absolute;
     z-index: 90;
@@ -193,7 +197,6 @@ table, td, tr {
 input[type="text"] {
     border-radius: 3px;
     border: none;
-    padding: 3px;
     background-color: white;
 }
 

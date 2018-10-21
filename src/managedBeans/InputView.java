@@ -129,7 +129,7 @@ public class InputView implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
     
-    public boolean checkHit (Point pnt) {
+    private boolean checkHit (Point pnt) {
     	double x = pnt.getX();
     	double y = pnt.getY();
     	double r = pnt.getR();
