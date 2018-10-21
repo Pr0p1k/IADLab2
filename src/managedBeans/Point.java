@@ -5,11 +5,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 @Entity
 @NamedQuery(
-name = "Point.getAll",
+name = "pointlist",
 query = "SELECT p FROM Point p")
+@ManagedBean(name = "point", eager = false)
+@RequestScoped
+@Table(name = "Point")
     public class Point implements Serializable  {
         
 	private static final long serialVersionUID = 154L;

@@ -8,7 +8,8 @@ import java.io.Serializable;
 
 @ManagedBean(name = "inputView")
 public class InputView implements Serializable {
-    private double x = 2;
+	private static final long serialVersionUID = -4049920593055331825L;
+	private double x = 2;
     private double y = 1;
     private double r = 0;
     private double xMin = -3;
