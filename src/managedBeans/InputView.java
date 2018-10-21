@@ -6,6 +6,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpSession;
+
 import java.io.Serializable;
 
 @ManagedBean(name = "inputBean", eager = true)
@@ -118,6 +120,10 @@ public class InputView implements Serializable {
     	pnt.setX(x);
     	pnt.setY(y);
     	pnt.setHit(checkHit(pnt));
+    	FacesContext fCtx = FacesContext.getCurrentInstance();
+    	HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
+    	String sessionId = session.getId();
+    	pnt.setSessionid(sessionId);
     	DatabaseBean dbb = new DatabaseBean();
     	dbb.addPoint(pnt);
     	//return "";
