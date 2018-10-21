@@ -231,3 +231,7 @@ input[type="text"] {
     display: none;
 }
 
+#calculate:slideR_hidden {
+    padding-top: 10px;
+}
+

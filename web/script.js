@@ -20,19 +20,14 @@ document.addEventListener('DOMContentLoaded', function () {
     canvas.width = 1000;
     canvas.height = 1000;
     let width = window.getComputedStyle(document.getElementById('computed_result')).width;
-    // document.getElementById('computed_result').height = width;
-    // console.log(window.getComputedStyle(document.getElementById('computed_result')).width);
     console.log("default = " + width);
-    //canvas.width = width;
-    // canvas.height = width;
-    // console.log(" width = " + canvas.width + " height = " + canvas.height);
 });
 
 
 let x, y, r, isDrawn;
 
 function check(btn) {
-    btn.preventDefault();
+    // btn.preventDefault();
 
     if (checkR() & checkX() & checkY()) {
         drawDot(x / r * 400 + 500, -y / r * 400 + 500);
@@ -42,9 +37,9 @@ function check(btn) {
 
 function checkY() {
     let passed = true;
-    let min = -3;
+    let min = -5;
     let max = 5;
-    y = document.getElementById("y").value;
+    y = document.getElementById("Y").value;
     y = y.replace(",", ".");
     if (isNaN(y) || Number(y) <= min || Number(y) >= max || y === '') {
         document.getElementById("Y_input").classList.add("error");
@@ -60,14 +55,10 @@ function checkY() {
 
 function checkX() {
     let passed = true;
-    let xArr = document.getElementsByName("X");
-    let xChecked = Array.from(xArr).some(function (item) {
-        if (item.checked) {
-            x = item.value;
-            return true;
-        }
-    });
-    if (!xChecked) {
+    x = document.getElementById('calculate:X_input').value;
+    let min = -3;
+    let max = 3;
+    if (isNaN(x) || Number(x) <= min || Number(x) >= max || x === '') {
         document.getElementById("X_input").classList.add("error");
         document.getElementById("X_comment").classList.replace("ok_comment", "error_comment");
         passed = false;
