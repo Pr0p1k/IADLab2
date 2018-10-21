@@ -19,8 +19,6 @@ public class DatabaseBean implements Serializable {
     	EntityManagerFactory EMF = Persistence.createEntityManagerFactory("provider");
     	EntityManager EM = EMF.createEntityManager();
     	List<Point> lst = EM.createNamedQuery("pointlist").getResultList();
-    	EM.close();
-    	EMF.close();
     	return lst;
     }
     
@@ -30,8 +28,6 @@ public class DatabaseBean implements Serializable {
             EM.getTransaction().begin();
             EM.persist(p);
             EM.getTransaction().commit();
-            EMF.close();
-        	EM.close();
     }
 	
 }

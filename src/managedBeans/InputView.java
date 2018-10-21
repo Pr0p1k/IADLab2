@@ -12,9 +12,9 @@ import java.io.Serializable;
 @SessionScoped
 public class InputView implements Serializable {
 	private static final long serialVersionUID = -4049920593055331825L;
-	private double x = 2;
-    private double y = 1;
-    private double r = 0;
+	private double x;
+    private double y;
+    private double r;
     private double xMin = -3;
     private double xMax = 3;
     private double yMin = -5;

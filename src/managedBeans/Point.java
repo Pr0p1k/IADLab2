@@ -26,22 +26,14 @@ query = "SELECT p FROM Point p")
         
         @Column (name="Y")
         private double y;
-
-    public boolean isHit() {
-        return hit;
-    }
-
-    public void setHit(boolean hit) {
-        this.hit = hit;
-    }
-
-    @Column (name="R")
+        
+        @Column (name="R")
         private double r;
-
-        @Column
-        private boolean hit;
         public Point(){}
 
+        @Column (name = "Hit")
+        private boolean hit;
+        
         public double getX() {
             return x;
         }
@@ -65,5 +57,15 @@ query = "SELECT p FROM Point p")
         public void setR(double r) {
             this.r = r;
         }
+
+		public boolean isHit() {
+			return hit;
+		}
+
+		public void setHit(boolean hit) {
+			this.hit = hit;
+		}
+        
+        
         
     }

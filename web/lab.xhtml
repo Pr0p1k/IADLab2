@@ -34,12 +34,12 @@
     <div class="main">
         <div class="io">
             <div class="data_input">
-                <h:form id="calculate" method="GET">
+                <h:form id="calculate">
                     <div class="elements">
                         <div id="X_input">
                             <label><span>Величина X </span>
                             <p:spinner minValue="#{inputBean.xMin}"
-                                       maxValue="#{inputBean.xMax}" stepFactor="#{inputBean.xStep}" id="X"/>
+                                       maxValue="#{inputBean.xMax}" value="#{inputBean.x}" stepFactor="#{inputBean.xStep}" id="X"/>
                             </label>
                             <br/>
                             <p class="ok_comment" id="X_comment">Значение X не выбрано</p>
@@ -61,14 +61,14 @@
                         </div>
                     </div>
                     <div class="send">
-                        <div id="hidden"><h:commandButton id="sender" action="#{inputBean.submitForm}"/></div>
-                        <h:commandButton id="send" onclick="check(this)" />
+                        <div id="hidden"><h:commandButton id="sender" update="tabli" action="#{inputBean.submitForm}"/></div>
+                        <h:commandButton value="Проверить" id="send"  onclick="check(this)" />
                     </div>
                 </h:form>
             </div>
             <div id="script_output">
-                <h:outputText id="tabli"/>
-                <h:dataTable value= "#{databaseBean.points}" var="o">
+                <h:outputText />
+                <h:dataTable id="tabli" value= "#{databaseBean.points}" var="o">
                 
                     <h:column>
                         <!--column header-->
@@ -86,7 +86,12 @@
                         <f:facet name="header">R</f:facet>
                         #{o.r}
                     </h:column>
-
+					
+					<h:column>
+                        <f:facet name="header">Hit</f:facet>
+                        #{o.hit}
+                    </h:column>
+					
                 </h:dataTable>
             </div>
         </div>

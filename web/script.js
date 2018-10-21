@@ -30,8 +30,8 @@ function check(btn) {
     if (checkR() & checkX() & checkY()) {
         draw();
         drawDot(x / r * 400 + 500, -y / r * 400 + 500);
-        compute();
-        $("[id$='hidden']").click();
+        //compute();
+        $("#calculate\\:sender").click();
     }
 }
 
