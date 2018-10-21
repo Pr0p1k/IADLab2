@@ -1,6 +1,9 @@
 package managedBeans;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import java.io.Serializable;
 
 @ManagedBean(name = "inputView")
@@ -103,5 +106,14 @@ public class InputView implements Serializable {
 
     public void setY(double y) {
         this.y = y;
+    }
+
+    public void buttonAction(ActionEvent actionEvent) {
+        addMessage("kekekekekekeke ldofldgjdg");
+    }
+
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 }

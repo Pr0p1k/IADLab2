@@ -37,10 +37,11 @@
                 <h:form id="calculate" method="GET">
                     <div class="elements">
                         <div id="X_input">
-                            <label><span>Величина X </span>
-                                <p:spinner minValue="#{inputView.xMin}"
-                                           maxValue="#{inputView.xMax}" stepFactor="#{inputView.xStep}" id="X"/>
-                            </label><br/>
+                            <!--<label><span>Величина X </span>-->
+                            <p:spinner minValue="#{inputView.xMin}"
+                                       maxValue="#{inputView.xMax}" stepFactor="#{inputView.xStep}" id="X"/>
+                            <!--</label>-->
+                            <br/>
                             <p class="ok_comment" id="X_comment">Значение X не выбрано</p>
                         </div>
                         <div id="Y_input">
@@ -51,36 +52,39 @@
                         </div>
                         <div id="R_input">
                             <label><span>Величина R </span>
-                                <h:outputText id="outputR"/>
+
                                 <ace:sliderEntry min="#{inputView.rMin}" max="#{inputView.rMax}"
-                                                 stepPercent="#{inputView.rStep}" value="#{inputView.r}"/>
+                                                 stepPercent="#{inputView.rStep}"
+                                                 value="#{inputView.r}" id="slideR"/>
                             </label>
                             <p class="ok_comment" id="R_comment">Значение R не выбрано</p>
                         </div>
                     </div>
                     <div class="send">
-                        <p:commandButton id="send" value="Проверить"/>
+                        <p:commandButton id="send" update="tabli" value="Проверить" action="#{inputView.buttonAction}"/>
                     </div>
                 </h:form>
             </div>
             <div id="script_output">
-                <!--<h:dataTable value= "#{databaseBean.gPoints}" var="o">-->
-                <!--<h:column>-->
-                <!--&lt;!&ndash; column header &ndash;&gt;-->
-                <!--<f:facet name="header">X</f:facet>-->
-                <!--&lt;!&ndash; row record &ndash;&gt;-->
-                <!--#{o.getX}-->
-                <!--</h:column>-->
+                <h:outputText id="tabli"/>
+                <!--&lt;!&ndash;value= "#{databaseBean.gPoints}"&ndash;&gt;-->
+                <!--<h:dataTable id="tabli" var="o">-->
+                    <!--<h:column>-->
+                        <!--&lt;!&ndash; column header &ndash;&gt;-->
+                        <!--<f:facet name="header">X</f:facet>-->
+                        <!--&lt;!&ndash; row record &ndash;&gt;-->
+                        <!--#{o.getX}-->
+                    <!--</h:column>-->
 
-                <!--<h:column>-->
-                <!--<f:facet name="header">Y</f:facet>-->
-                <!--#{o.getY}-->
-                <!--</h:column>-->
+                    <!--<h:column>-->
+                        <!--<f:facet name="header">Y</f:facet>-->
+                        <!--#{o.getY}-->
+                    <!--</h:column>-->
 
-                <!--<h:column>-->
-                <!--<f:facet name="header">R</f:facet>-->
-                <!--#{o.getR}-->
-                <!--</h:column>-->
+                    <!--<h:column>-->
+                        <!--<f:facet name="header">R</f:facet>-->
+                        <!--#{o.getR}-->
+                    <!--</h:column>-->
 
                 <!--</h:dataTable>-->
             </div>

@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // document.getElementById('Rslider').addEventListener('input', function () {
+    document.getElementById('calculate:slideR_hidden').type = 'text';
+    document.getElementById('calculate:slideR_hidden').readonly = 'true';
+    document.getElementById('calculate:slideR_hidden').addEventListener('change', function () {
+        if (checkR(false)) draw();
+        isDrawn = true;
+        hideWarning();
+    });
+    // let slider = ice.ace.instance('frm:slideR');
+    // slider.addEventListener('mouseup', function () {
+    //     console.log('ekgekger');
     //     if (checkR(false)) draw();
     //     isDrawn = true;
     //     hideWarning();
@@ -72,9 +81,9 @@ function checkX() {
 
 function checkR(change = true) {
     let passed = true;
-    let min = 1;
-    let max = 4;
-    let R = document.getElementById("r").value;
+    let min = 2;
+    let max = 5;
+    let R = document.getElementById("calculate:slideR_hidden").value;
     R = R.replace(",", ".");
     if (isNaN(R) || Number(R) <= min || Number(R) >= max || R === '') {
         if (change) {
