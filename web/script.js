@@ -29,8 +29,8 @@ function check(btn) {
     if (checkR() & checkX() & checkY()) {
         draw();
         drawDot(x / r * 400 + 500, -y / r * 400 + 500);
-        compute();
-        // $("#calculate\\:sender").click();
+        //compute();
+        $("#calculate\\:sender").click();
     }
 }
 
@@ -279,37 +279,4 @@ function compute() {
             table.append(row);
         }
     });
-}
-
-class Point {
-    constructor(x, y, hit) {
-        this._y = y;
-        this._x = x;
-        this._hit = hit;
-    }
-
-    get x() {
-        return this._x;
-    }
-
-
-    get y() {
-        return this._y;
-    }
-
-    get hit() {
-        return this._hit;
-    }
-
-    set hit(value) {
-        this._hit = value;
-    }
-
-    set y(value) {
-        this._y = value;
-    }
-
-    set x(value) {
-        this._x = value;
-    }
 }

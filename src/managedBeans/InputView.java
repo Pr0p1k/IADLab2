@@ -1,16 +1,22 @@
 package managedBeans;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpSession;
+
 import java.io.Serializable;
 
 @ManagedBean(name = "inputBean", eager = true)
 @SessionScoped
 public class InputView implements Serializable {
 	private static final long serialVersionUID = -4049920593055331825L;
-	private double x = 2;
-    private double y = 1;
-    private double r = 0;
+	private double x;
+    private double y;
+    private double r;
     private double xMin = -3;
     private double xMax = 3;
     private double yMin = -5;
@@ -114,10 +120,21 @@ public class InputView implements Serializable {
     	pnt.setX(x);
     	pnt.setY(y);
     	pnt.setHit(checkHit(pnt));
+    	FacesContext fCtx = FacesContext.getCurrentInstance();
+    	HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
+    	String sessionId = session.getId();
+    	pnt.setSessionid(sessionId);
     	DatabaseBean dbb = new DatabaseBean();
     	dbb.addPoint(pnt);
+    	//return "";
+        //addMessage("kekekekekekeke ldofldgjdg");
     }
 
+    public void addMessage(String summary) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
     private boolean checkHit (Point pnt) {
     	double x = pnt.getX();
     	double y = pnt.getY();

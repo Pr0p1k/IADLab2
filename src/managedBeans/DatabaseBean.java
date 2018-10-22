@@ -5,8 +5,10 @@ import java.io.Serializable;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.servlet.http.HttpSession;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean(name = "databaseBean", eager = false)
 @RequestScoped
@@ -18,9 +20,10 @@ public class DatabaseBean implements Serializable {
     public List<Point> getPoints() {
     	EntityManagerFactory EMF = Persistence.createEntityManagerFactory("provider");
     	EntityManager EM = EMF.createEntityManager();
-    	List<Point> lst = EM.createNamedQuery("pointlist").getResultList();
-    	EM.close();
-    	EMF.close();
+    	FacesContext fCtx = FacesContext.getCurrentInstance();
+    	HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
+    	String sessionId = session.getId();
+    	List<Point> lst = EM.createNamedQuery("pointlist").setParameter("session", sessionId).getResultList();
     	return lst;
     }
     
@@ -30,8 +33,6 @@ public class DatabaseBean implements Serializable {
             EM.getTransaction().begin();
             EM.persist(p);
             EM.getTransaction().commit();
-            EMF.close();
-        	EM.close();
     }
 	
 }
