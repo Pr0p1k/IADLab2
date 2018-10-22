@@ -38,7 +38,6 @@ query = "SELECT p FROM Point p")
     @Column (name="R")
         private double r;
 
-        @Column
         private boolean hit;
         public Point(){}
 

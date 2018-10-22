@@ -4,16 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
         isDrawn = true;
         hideWarning();
     });
-    document.querySelector('calculate:slideR').addEventListener('click', function () {
+    document.getElementById("calculate:slideR").addEventListener('mouseup', function () {
         console.log('ekgekger');
-        if (checkR(false)) { draw();
+        if (checkR(false)) {
+            draw();
             isDrawn = true;
             hideWarning();
         }
     });
     document.getElementById('computed_result').addEventListener('click', pickPoint);
-    //document.getElementById('send').addEventListener('click', check);
-
     let canvas = document.getElementById('result');
     canvas.width = 1000;
     canvas.height = 1000;
@@ -31,7 +30,7 @@ function check(btn) {
         draw();
         drawDot(x / r * 400 + 500, -y / r * 400 + 500);
         compute();
-        $("[id$='hidden']").click();
+        // $("#calculate\\:sender").click();
     }
 }
 
@@ -132,7 +131,16 @@ function hideWarning() {
     document.getElementById("warning").style.display = "none";
 }
 
+function drawAllDots() {
+    let rows = document.getElementById("tabli").rows;
+    for (let i = 1; i < rows.length; i++) {
+        drawDot(rows[i].cells[0].innerHTML, rows[i].cells[1].innerHTML,
+            rows[i].cells[3].innerHTML === 'true');
+    }
+}
+
 function draw() {
+    drawAllDots();
     let canvas = document.getElementById("result");
     let context = canvas.getContext("2d");
     let width = canvas.width;
@@ -160,37 +168,37 @@ function drawLines(canvas, context, width, height) {
 
     context.moveTo(width * 0.1, height / 2 + height * 0.01);
     context.lineTo(width * 0.1, height / 2 - height * 0.01);
-    context.fillText(-r, width * 0.1, height * 0.53);
+    context.fillText(-Number(r).toFixed(1), width * 0.1, height * 0.53);
 
     context.moveTo(width * 0.3, height / 2 + height * 0.01);
     context.lineTo(width * 0.3, height / 2 - height * 0.01);
-    context.fillText(-r / 2, width * 0.3, height * 0.53);
+    context.fillText(-Number(r).toFixed(1) / 2, width * 0.3, height * 0.53);
 
     context.fillText(0, width * 0.51, height * 0.53);
 
     context.moveTo(width * 0.7, height / 2 + height * 0.01);
     context.lineTo(width * 0.7, height / 2 - height * 0.01);
-    context.fillText(r / 2, width * 0.7, height * 0.53);
+    context.fillText(Number(r).toFixed(1) / 2, width * 0.7, height * 0.53);
 
     context.moveTo(width * 0.9, height / 2 + height * 0.01);
     context.lineTo(width * 0.9, height / 2 - height * 0.01);
-    context.fillText(r, width * 0.9, height * 0.53);
+    context.fillText(Number(r).toFixed(1), width * 0.9, height * 0.53);
 
     context.moveTo(width / 2 + width * 0.01, height * 0.1);
     context.lineTo(width / 2 - width * 0.01, height * 0.1);
-    context.fillText(r, width * 0.53, height * 0.1);
+    context.fillText(Number(r).toFixed(1), width * 0.53, height * 0.1);
 
     context.moveTo(width / 2 + width * 0.01, height * 0.3);
     context.lineTo(width / 2 - width * 0.01, height * 0.3);
-    context.fillText(r / 2, width * 0.53, height * 0.3);
+    context.fillText(Number(r).toFixed(1) / 2, width * 0.53, height * 0.3);
 
     context.moveTo(width / 2 + width * 0.01, height * 0.7);
     context.lineTo(width / 2 - width * 0.01, height * 0.7);
-    context.fillText(-r / 2, width * 0.53, height * 0.7);
+    context.fillText(-Number(r).toFixed(1) / 2, width * 0.53, height * 0.7);
 
     context.moveTo(width / 2 + width * 0.01, height * 0.9);
     context.lineTo(width / 2 - width * 0.01, height * 0.9);
-    context.fillText(-r, width * 0.53, height * 0.9);
+    context.fillText(-Number(r).toFixed(1), width * 0.53, height * 0.9);
 
     context.closePath();
     context.strokeStyle = "black";
@@ -211,14 +219,11 @@ function drawArea(canvas, context, width, height) {
     context.fill();
 }
 
-function drawDot(X, Y) {
+function drawDot(X, Y, hit) {
     let canvas = document.getElementById("result");
     let context = canvas.getContext("2d");
     let radius = canvas.width / 100;
-    let red = Math.random() * 255;
-    let green = Math.random() * 255;
-    let blue = Math.random() * 255;
-    context.fillStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+    context.fillStyle = hit ? 'green' : 'red';
     console.log("X = " + X + " Y = " + Y);
     context.fillRect(X, Y, radius, radius);
 }
@@ -274,4 +279,37 @@ function compute() {
             table.append(row);
         }
     });
+}
+
+class Point {
+    constructor(x, y, hit) {
+        this._y = y;
+        this._x = x;
+        this._hit = hit;
+    }
+
+    get x() {
+        return this._x;
+    }
+
+
+    get y() {
+        return this._y;
+    }
+
+    get hit() {
+        return this._hit;
+    }
+
+    set hit(value) {
+        this._hit = value;
+    }
+
+    set y(value) {
+        this._y = value;
+    }
+
+    set x(value) {
+        this._x = value;
+    }
 }

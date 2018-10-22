@@ -55,7 +55,8 @@
                                 <h:outputText id="valueR"/>
                                 <ace:sliderEntry min="#{inputBean.rMin}" max="#{inputBean.rMax}"
                                                  stepPercent="#{inputBean.rStep}"
-                                                 value="#{inputBean.r}" id="slideR" length="250px"/>
+                                                 value="#{inputBean.r}" id="slideR"
+                                                 length="250px" widgetVar="sliderjs"/>
                             </label>
                             <p class="ok_comment" id="R_comment">Значение R не выбрано</p>
                         </div>
@@ -67,8 +68,7 @@
                 </h:form>
             </div>
             <div id="script_output">
-                <h:outputText id="tabli"/>
-                <h:dataTable value= "#{databaseBean.points}" var="o">
+                <h:dataTable value= "#{databaseBean.points}" id="tabli" var="o">
                 
                     <h:column>
                         <!--column header-->
@@ -86,7 +86,28 @@
                         <f:facet name="header">R</f:facet>
                         #{o.r}
                     </h:column>
-
+                    <h:column>
+                        <f:facet name="header">hit</f:facet>
+                        #{o.hit}
+                    </h:column>
+                    <tr>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>false</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>false</td>
+                    </tr>
                 </h:dataTable>
             </div>
         </div>

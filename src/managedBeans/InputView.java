@@ -1,11 +1,7 @@
 package managedBeans;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import java.io.Serializable;
 
 @ManagedBean(name = "inputBean", eager = true)
@@ -120,15 +116,8 @@ public class InputView implements Serializable {
     	pnt.setHit(checkHit(pnt));
     	DatabaseBean dbb = new DatabaseBean();
     	dbb.addPoint(pnt);
-    	//return "";
-        //addMessage("kekekekekekeke ldofldgjdg");
     }
 
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,  null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-    
     private boolean checkHit (Point pnt) {
     	double x = pnt.getX();
     	double y = pnt.getY();
