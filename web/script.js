@@ -1,12 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('calculate:slideR_hidden').addEventListener('change', function () {
-        if (checkR(false)) draw();
+        if (checkR(false)) {
+        draw();
+        document.getElementById("calculate:sendR").value = r;
         isDrawn = true;
         hideWarning();
+        }
     });
     document.getElementById("calculate:slideR").addEventListener('mouseup', function () {
         console.log('ekgekger');
+        
         if (checkR(false)) {
+        	document.getElementById("calculate:sendR").value = r;
             draw();
             isDrawn = true;
             hideWarning();
@@ -27,6 +32,7 @@ function check(btn) {
     // btn.preventDefault();
 
     if (checkR() & checkX() & checkY()) {
+    	document.getElementById("calculate:sendR").value = r;
     	hideWarning();
         draw();
         drawDot(x / r * 400 + 500, -y / r * 400 + 500, belongs(x, y, r));
@@ -107,6 +113,8 @@ function pickPoint(event) {
         y = -(Y - 500) / 400 * r;
         console.log(" draw X = " + X + " draw Y = " + Y);
         drawDot(X, Y, belongs(x, y, r));
+        x = Number(x).toFixed(3);
+        y = Number(y).toFixed(3);
         $("#calculate\\:X_input").val(x);
         $("#calculate\\:Y").val(y);
         $("#calculate\\:sender").click();
