@@ -106,6 +106,8 @@ function pickPoint(event) {
         y = -(Y - 500) / 400 * r;
         console.log(" draw X = " + X + " draw Y = " + Y);
         drawDot(X, Y, belongs(x, y, r));
+        $("#calculate\\:X_input").val(x);
+        $("#calculate\\:Y").val(y);
         $("#calculate\\:sender").click();
 
     } else showWarning();
