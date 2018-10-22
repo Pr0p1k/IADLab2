@@ -1,21 +1,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-<head>
+<h:head>
     <title>Time</title>
+    <link href="img/logo.png" rel="shortcut icon" type="image/x-icon"/>
     <script src="start_page_scripts.js"/>
     <link rel="stylesheet" href="start_page_styles.css"/>
-</head>
+</h:head>
 <h:body onload="startTime()">
     <div class="header">
-        Вязников И.Д., Прокопьев А.В., группа Р3212. Вариант 21212
+        <div id="logo">
+            <img src="img/logo.png" alt="Логотип ВТ"/>
+        </div>
+        <div id="author">
+            <p>Prokopiev Alexandr and Vyaznikov Ivan</p>
+        </div>
+
+        <div id="group">
+            <p>Group P3212</p>
+        </div>
+        <div id="variant">
+            <p>Variant 21212</p>
+        </div>
     </div>
     <br/>
-    <div id="txt"/>
-    <h:form> 
-   <h:commandButton action = "#{navigationController.processLabPage}" value = "Lab page">
-   <f:param name = "pageId" value = "labPage" />
-   </h:commandButton>
-</h:form> 
+    <div id="txt">
+        <p id="time"/>
+    </div>
+    <h:form>
+        <h:commandButton action="#{navigationController.processLabPage}" value="Main page">
+            <f:param name="pageId" value="labPage"/>
+        </h:commandButton>
+    </h:form>
 </h:body>
 </html>

@@ -1,14 +1,75 @@
+@font-face {
+    font-family: "sans-forgetica";
+    src: url(SansForgetica-Regular.otf) format("truetype");
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #64b5f6;
+    font-size: 16px;
+    overflow-x: hidden;
+    font-family: sans-forgetica;
+}
+
 #txt {
-    font-size: 44pt;
-    width: 20%;
-    background-color: powderblue;
-    box-shadow: 0px 0px 4px 4px powderblue;
+    background-color: #9be7ff;
+    box-shadow: 0 0 4px 4px #9be7ff;
+    border-radius: 10px;
+    margin: 10px;
+    height: 200px;
+    text-align: center;
+    padding-top: 80px;
+}
+
+#time {
+    margin: auto;
+    font-size: 48pt;
 }
 .header {
-    background-color: coral;
-    height: 10%;
-    font-size: 30pt;
+    position: relative;
+    float: top;
+    height: 60px;
+    width: 100%;
+    background-color: #2286c3;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 30px;
+
 }
+
+#logo {
+    position: relative;
+    float: left;
+}
+
+#logo img {
+    height: 50px;
+}
+
+#author {
+    position: relative;
+    float: left;
+    margin-left: 80px;
+}
+
+#group {
+    position: relative;
+    float: right;
+    margin-right: 30px;
+}
+
+#variant {
+    position: relative;
+    float: right;
+    margin-right: 30px;
+}
+
+.header p {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
 a:hover {
     color:brown;
 }
@@ -19,6 +80,7 @@ a {
     color:black;
     font-size: 30pt;
 }
-body {
-    background-color: rgb(255, 241, 138);
+
+form {
+    margin-left: 50%;
 }
