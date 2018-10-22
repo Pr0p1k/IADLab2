@@ -38,9 +38,8 @@
                     <div class="elements">
                         <div id="X_input">
                             <label><span>Величина X </span>
-                                <p:spinner minValue="#{inputBean.xMin}"
-                                           maxValue="#{inputBean.xMax}" value="#{inputBean.x}"
-                                           stepFactor="#{inputBean.xStep}" id="X"/>
+                            <p:spinner minValue="#{inputBean.xMin}"
+                                       maxValue="#{inputBean.xMax}" value="#{inputBean.x}" stepFactor="#{inputBean.xStep}" id="X"/>
                             </label>
                             <br/>
                             <p class="ok_comment" id="X_comment">Значение X не выбрано</p>
@@ -56,21 +55,23 @@
                                 <h:outputText id="valueR"/>
                                 <ace:sliderEntry min="#{inputBean.rMin}" max="#{inputBean.rMax}"
                                                  stepPercent="#{inputBean.rStep}"
-                                                 value="#{inputBean.r}" id="slideR" length="250px"/>
+                                                 value="#{inputBean.r}" id="slideR"
+                                                 length="250px" widgetVar="sliderjs"/>
+                                                 
                             </label>
                             <p class="ok_comment" id="R_comment">Значение R не выбрано</p>
                         </div>
                     </div>
                     <div class="send">
-                        <div id="hidden"><h:commandButton id="sender" update="tabli" action="#{inputBean.submitForm}"/>
-                        </div>
-                        <h:commandButton value="Проверить" id="send" onclick="check(this)"/>
+                        <div id="hidden"><h:commandButton id="sender" update="tabli" action="#{inputBean.submitForm}"/></div>
+                        <h:commandButton value="Проверить" id="send"  onclick="check(this)" />
                     </div>
                 </h:form>
             </div>
             <div id="script_output">
-                <h:dataTable id="tabli" value="#{databaseBean.points}" var="o">
-
+                <h:outputText />
+                <h:dataTable id="tabli" value= "#{databaseBean.points}" var="o">
+                
                     <h:column>
                         <!--column header-->
                         <f:facet name="header">X</f:facet>
@@ -87,11 +88,12 @@
                         <f:facet name="header">R</f:facet>
                         #{o.r}
                     </h:column>
-
-                    <h:column>
+					
+					<h:column>
                         <f:facet name="header">Hit</f:facet>
                         #{o.hit}
                     </h:column>
+					
                 </h:dataTable>
             </div>
         </div>
@@ -99,6 +101,11 @@
         <div id="computed_result">
             <canvas id="result"/>
         </div>
+        <h:form>
+        <h:commandButton action = "#{navigationController.processStartPage}" value = "Start page">
+   <f:param name = "pageId" value = "start" />
+   </h:commandButton>
+   </h:form>
     </div>
     <div class="main" id="footer">
         <p id="educator">Письмак А.Е.</p>

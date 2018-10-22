@@ -5,18 +5,21 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
 
-@ManagedBean(name = "navigationController", eager = true)
-@RequestScoped
+
 
 public class NavigationController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-    @ManagedProperty(value = "#{param.pageId}")
-    private String pageId;
+	private String pageId;
 
     public String processLabPage() {
     	if (pageId.equals("labPage"))
     		return "lab";
+    	else return null;
+    }
+    public String processStartPage() {
+    	if (pageId.equals("start"))
+    		return "start";
     	else return null;
     }
 

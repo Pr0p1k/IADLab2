@@ -10,8 +10,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-@ManagedBean(name = "databaseBean", eager = false)
-@RequestScoped
 
 public class DatabaseBean implements Serializable {
 

@@ -27,8 +27,9 @@ function check(btn) {
     // btn.preventDefault();
 
     if (checkR() & checkX() & checkY()) {
+    	hideWarning();
         draw();
-        drawDot(x / r * 400 + 500, -y / r * 400 + 500);
+        drawDot(x / r * 400 + 500, -y / r * 400 + 500, belongs(x, y, r));
         //compute();
         $("#calculate\\:sender").click();
     }
@@ -114,11 +115,11 @@ function pickPoint(event) {
 }
 
 function belongs(x, y, r) {
-    if (x < 0 & y > 0 & y < x + r / 2) {
+    if (x <= 0 & y >= 0 & y <= x + r / 2) {
         return true;
-    } else if (x < 0 & y < 0 & Math.hypot(x, y) < r / 2) {
+    } else if (x <= 0 & y <= 0 & Math.hypot(x, y) <= r / 2) {
         return true;
-    } else if (x > 0 & y < 0 & y > -r & x < r / 2) {
+    } else if (x >= 0 & y <= 0 & y >= -r & x <= r / 2) {
         return true;
     }
 
@@ -148,12 +149,15 @@ function hideWarning() {
 
 function drawAllDots() {
     let rows = document.getElementById("tabli").rows;
+    if (rows.length > 1 & rows[1].cells[1] != undefined) {
     for (let i = 1; i < rows.length; i++) {
-        let R = Number(rows[i].cells[2].innerHTML);                 //question: if i recover all the dots,
-        let X = Number(rows[i].cells[0].innerHTML) / R * 400 + 500; //then should their x and y adapt?
-        let Y = -Number(rows[i].cells[1].innerHTML) / R * 400 + 500; // if not, then should i change their color?
-        drawDot(X, Y, Number(rows[i].cells[3].innerHTML.includes('true')));
-    }
+        let R = Number(rows[i].cells[2].innerHTML);
+        let xB = Number(rows[i].cells[0].innerHTML);
+        let yB = Number(rows[i].cells[1].innerHTML);//question: if i recover all the dots,
+        let X = Number(rows[i].cells[0].innerHTML) / r * 400 + 500; //then should their x and y adapt?
+        let Y = -Number(rows[i].cells[1].innerHTML) / r * 400 + 500; // if not, then should i change their color?
+        drawDot(X, Y, belongs(xB, yB, r));
+    }}
 }
 
 function draw() {
