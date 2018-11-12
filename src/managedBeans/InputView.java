@@ -149,7 +149,7 @@ public class InputView implements Serializable {
     			return false;
     		else return true;
     	}
-    	if ((x*2 + y*y) > (r*r/4))
+    	if ((x*x + y*y) > (r*r/4))
     		return false;
     	return true;
     }

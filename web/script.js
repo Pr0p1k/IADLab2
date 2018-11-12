@@ -1,36 +1,51 @@
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('calculate:slideR_hidden').addEventListener('change', function () {
-        if (checkR(false)) {
+	window.addEventListener('offline', offline);
+	window.addEventListener('online', online);
+   /* document.getElementById('calculate:slideR').addEventListener('change', function () {
+        document.getElementById("calculate:sendR").value = document.getElementById("calculate:slideR");
+        r = document.getElementById("calculate:slideR");
         draw();
-        document.getElementById("calculate:sendR").value = r;
         isDrawn = true;
         hideWarning();
-        }
-    });
-    document.getElementById("calculate:slideR").addEventListener('mouseup', function () {
-        console.log('ekgekger');
         
-        if (checkR(false)) {
-        	document.getElementById("calculate:sendR").value = r;
-            draw();
-            isDrawn = true;
-            hideWarning();
-        }
-    });
+    });*/
+    document.getElementById("calculate:slideR").addEventListener('mouseup', sliderListener);
     document.getElementById('computed_result').addEventListener('click', pickPoint);
     let canvas = document.getElementById('result');
+    
     canvas.width = 1000;
     canvas.height = 1000;
     let width = window.getComputedStyle(document.getElementById('computed_result')).width;
     console.log("default = " + width);
 });
 
+function sliderListener() {
+	r = document.getElementById("calculate:slideR_hidden").value;
+	document.getElementById("calculate:sendR").value = r;
+		console.log("mouseup event on calculate:slideR, r: "+r);
+        draw();
+        isDrawn = true;
+        hideWarning();
+}
+
 
 let x, y, r, isDrawn;
-
+function offline() {
+	document.getElementById("connectionState").value = "You are disconnected from the Internet!";
+	document.getElementById("connectionState").style.color = "red";
+	alert("Internet connection lost!");
+	document.getElementById("calculate:send").disabled = true;
+	document.getElementById("computed_result").removeEventListener('click', pickPoint);
+}
+function online() {
+	document.getElementById("connectionState").value = "You are connected to the Internet.";
+	document.getElementById("connectionState").style.color = "green";
+	alert("Internet connection restored!");
+	document.getElementById("calculate:send").disabled = false;
+	document.getElementById("computed_result").addEventListener('click', pickPoint);
+}
 function check(btn) {
     // btn.preventDefault();
-
     if (checkR() & checkX() & checkY()) {
     	document.getElementById("calculate:sendR").value = r;
     	hideWarning();
@@ -39,6 +54,7 @@ function check(btn) {
         //compute();
         $("#calculate\\:sender").click();
     }
+    document.getElementById("calculate:slideR").addEventListener('mouseup', sliderListener);
 }
 
 function checkY() {
@@ -47,7 +63,7 @@ function checkY() {
     let max = 5;
     y = $("[id$='Y']").val();
     y = y.replace(",", ".");
-    if (isNaN(y) || Number(y) <= min || Number(y) >= max || y === '') {
+    if (isNaN(y) || Number(y) < min || Number(y) > max || y === '') {
         document.getElementById("Y_input").classList.add("error");
         document.getElementById("Y_comment").classList.replace("ok_comment", "error_comment");
         passed = false;
@@ -64,7 +80,7 @@ function checkX() {
     x = document.getElementById('calculate:X_input').value;
     let min = -3;
     let max = 3;
-    if (isNaN(x) || Number(x) <= min || Number(x) >= max || x === '') {
+    if (isNaN(x) || Number(x) < min || Number(x) > max || x === '') {
         document.getElementById("X_input").classList.add("error");
         document.getElementById("X_comment").classList.replace("ok_comment", "error_comment");
         passed = false;
@@ -82,7 +98,8 @@ function checkR(change = true) {
     let max = 5;
     let R = document.getElementById("calculate:slideR_hidden").value;
     R = R.replace(",", ".");
-    if (isNaN(R) || Number(R) <= min || Number(R) >= max || R === '') {
+    
+    if (isNaN(R) || Number(R) < min || Number(R) > max || R === '') {
         if (change) {
             document.getElementById("R_input").classList.add("error");
             document.getElementById("R_comment").classList.replace("ok_comment", "error_comment");
@@ -94,12 +111,15 @@ function checkR(change = true) {
         document.getElementById("R_comment").classList.replace("error_comment", "ok_comment");
     }
     if (passed) r = R;
+    console.log(r);
     return passed;
 }
 
 function pickPoint(event) {
     if (isDrawn) {
-        let canvas = document.getElementById('computed_result');
+        let canvas = document.getElementById('result');
+        console.log("clicked on canvas");
+        checkR();
         console.log("click X = " + event.pageX + "\nclick Y = " + event.pageY + "\nscroll X = "
             + window.pageXOffset + "\nscroll Y = " + window.pageYOffset
             + "\n canvas X = " + canvas.getBoundingClientRect().left + "\n canvas Y = "
@@ -112,6 +132,7 @@ function pickPoint(event) {
         x = (X - 500) / 400 * r;
         y = -(Y - 500) / 400 * r;
         console.log(" draw X = " + X + " draw Y = " + Y);
+        draw();
         drawDot(X, Y, belongs(x, y, r));
         x = Number(x).toFixed(3);
         y = Number(y).toFixed(3);
@@ -120,6 +141,7 @@ function pickPoint(event) {
         $("#calculate\\:sender").click();
 
     } else showWarning();
+    document.getElementById("calculate:slideR").addEventListener('mouseup', sliderListener);
 }
 
 function belongs(x, y, r) {
@@ -161,14 +183,15 @@ function drawAllDots() {
     for (let i = 1; i < rows.length; i++) {
         let R = Number(rows[i].cells[2].innerHTML);
         let xB = Number(rows[i].cells[0].innerHTML);
-        let yB = Number(rows[i].cells[1].innerHTML);//question: if i recover all the dots,
-        let X = Number(rows[i].cells[0].innerHTML) / r * 400 + 500; //then should their x and y adapt?
-        let Y = -Number(rows[i].cells[1].innerHTML) / r * 400 + 500; // if not, then should i change their color?
+        let yB = Number(rows[i].cells[1].innerHTML);
+        let X = Number(rows[i].cells[0].innerHTML) / r * 400 + 500; 
+        let Y = -Number(rows[i].cells[1].innerHTML) / r * 400 + 500;
         drawDot(X, Y, belongs(xB, yB, r));
     }}
 }
 
 function draw() {
+	console.log("draw method called");
     let canvas = document.getElementById("result");
     let context = canvas.getContext("2d");
     let width = canvas.width;
@@ -255,57 +278,4 @@ function drawDot(X, Y, hit) {
     context.fillStyle = hit ? 'green' : 'red';
     console.log("X = " + X + " Y = " + Y);
     context.fillRect(X, Y, radius, radius);
-}
-
-function compute() {
-    drawDot();
-    x = Number(x).toFixed(2);
-    y = Number(y).toFixed(2);
-    r = Number(r).toFixed(2);
-    $.ajax({
-        url: 'control',
-        type: 'GET',
-        data: {X: x, Y: y, R: r},
-        success: function (data) {
-            console.log(x + " " + y + " " + r + ";\n");
-            let start = data.lastIndexOf("<td>") + 4;
-            let end = data.lastIndexOf("</td>");
-            let answer = data.substring(start, end);
-            if (answer === "Incorrect values were sent") {
-                let table = $(document).find("#table_result");
-                let row = $("<tr/>");
-                let cell = $("<td colspan='4'/>").text("Отправленные данные некорректны");
-                row.append(cell);
-                table.append(row);
-                return;
-            }
-            console.log(answer);
-            let table = document.getElementById("table_result");
-            let row = document.createElement("tr");
-            let cellX = document.createElement("td");
-            let cellY = document.createElement("td");
-            let cellR = document.createElement("td");
-            let cellAnswer = document.createElement("td");
-            let htmlX = document.createTextNode(x);
-            let htmlY = document.createTextNode(y);
-            let htmlR = document.createTextNode(r);
-            let htmlAnswer = document.createTextNode(answer);
-            cellX.appendChild(htmlX);
-            cellY.appendChild(htmlY);
-            cellR.appendChild(htmlR);
-            cellAnswer.appendChild(htmlAnswer);
-            row.appendChild(cellX);
-            row.appendChild(cellY);
-            row.appendChild(cellR);
-            row.appendChild(cellAnswer);
-            table.append(row);
-        },
-        error: function () {
-            let table = $(document).find("#table_result");
-            let row = $("<tr/>");
-            let cell = $("<td colspan='4'/>").text("Произошла ошибка");
-            row.append(cell);
-            table.append(row);
-        }
-    });
 }
